@@ -21,10 +21,10 @@ echo -e "Choose device\n(1) a217m (dm-verity on)\n(2) a217f (dm-verity off):"
 read device_selection
 if [[ $device_selection == 1 ]]; then
     echo "Selected a217m"
-    $defconfig = a217m_physwizz_defconfig
+    defconfig="a217m_physwizz_defconfig"
 elif [[ $device_selection == 2 ]]; then
     echo "Selected a217f"
-    $defconfig = a217f_physwizz_defconfig
+    defconfig="a217f_physwizz_defconfig"
 else
     echo "Please selected a valid device!"
     exit
@@ -34,5 +34,5 @@ clear
 export PLATFORM_VERSION=11
 export ANDROID_MAJOR_VERSION=r
 export ARCH=arm64
-make -j64 -C $(pwd) O=$(pwd)/out KCFLAGS=-w CONFIG_SECTION_MISMATCH_WARN_ONLY=y physwizz_defconfig
+make -j64 -C $(pwd) O=$(pwd)/out KCFLAGS=-w CONFIG_SECTION_MISMATCH_WARN_ONLY=y $defconfig
 make -j64 -C $(pwd) O=$(pwd)/out KCFLAGS=-w CONFIG_SECTION_MISMATCH_WARN_ONLY=y
